@@ -140,22 +140,6 @@ Combines multiple signals with weighted formula:
 
 Minimum number of contributors whose departure would result in >50% of the code having no active author. Sort authors by contribution %, accumulate until >50% — that count is the bus factor.
 
-## Development
-
-```bash
-# Clone and install
-git clone https://github.com/git-tribe/git-tribe.git
-cd git-tribe
-pip install -e ".[dev]"
-
-# Run tests
-pytest --cov=git_tribe
-
-# Lint
-ruff check src/ tests/
-ruff format src/ tests/
-```
-
 ## License
 
 [MIT](LICENSE)
