@@ -1,8 +1,14 @@
+<p align="center">
+  <img src="logo.png" alt="git-tribe logo" width="800" height="350">
+</p>
+
+
 # 🔍 git-tribe
+
 
 **Code Ownership & Knowledge Map CLI** — Analyze git history to reveal who owns what code, calculate bus factor, identify knowledge silos, and auto-generate CODEOWNERS files.
 
-[![CI](https://github.com/git-tribe/git-tribe/actions/workflows/ci.yml/badge.svg)](https://github.com/git-tribe/git-tribe/actions/workflows/ci.yml)
+[![CI](https://github.com/bhayanak/git-tribe/actions/workflows/ci.yml/badge.svg)](https://github.com/bhayanak/git-tribe/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/git-tribe)](https://pypi.org/project/git-tribe/)
 [![Python](https://img.shields.io/pypi/pyversions/git-tribe)](https://pypi.org/project/git-tribe/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -149,14 +155,6 @@ pytest --cov=git_tribe
 ruff check src/ tests/
 ruff format src/ tests/
 ```
-
-## Releasing
-
-1. Update version in `src/git_tribe/__init__.py` and `pyproject.toml`
-2. Update `CHANGELOG.md`
-3. Commit and tag: `git tag v1.0.0`
-4. Push: `git push origin main --tags`
-5. GitHub Actions handles PyPI publish and GitHub Release
 
 ## License
 

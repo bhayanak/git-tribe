@@ -31,3 +31,7 @@ Thumbs.db
 
 # Project specific
 *.generated.*
+
+*.md
+!CHANGELOG.md
+!CONTRIBUTING.md

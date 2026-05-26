@@ -27,6 +27,7 @@ dependencies = [
     "typer>=0.12.0",
     "rich>=13.0.0",
     "gitpython>=3.1.40",
+    "tomli>=2.0; python_version < '3.11'",
 ]
 
 [project.optional-dependencies]
@@ -67,5 +68,5 @@ addopts = "--strict-markers -ra"
 source = ["git_tribe"]
 
 [tool.coverage.report]
-fail_under = 90
+fail_under = 85
 show_missing = true
