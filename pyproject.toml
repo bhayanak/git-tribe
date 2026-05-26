@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "git-tribe"
+version = "1.0.0"
+description = "Code ownership & knowledge map CLI — bus factor, knowledge silos, and CODEOWNERS generation from git history"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Git Tribe Contributors" }]
+keywords = ["git", "ownership", "bus-factor", "codeowners", "cli", "knowledge-map"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Version Control :: Git",
+]
+dependencies = [
+    "typer>=0.12.0",
+    "rich>=13.0.0",
+    "gitpython>=3.1.40",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+git-tribe = "git_tribe.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/git-tribe/git-tribe"
+Repository = "https://github.com/git-tribe/git-tribe"
+Issues = "https://github.com/git-tribe/git-tribe/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/git_tribe"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "S", "B", "A", "C4", "PT"]
+ignore = ["S603", "S607"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers -ra"
+
+[tool.coverage.run]
+source = ["git_tribe"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
