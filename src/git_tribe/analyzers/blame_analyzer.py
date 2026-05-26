@@ -33,6 +33,10 @@ class BlameAnalyzer:
         if not full_path.exists() or full_path.is_dir():
             return {}
 
+        # Skip binary files
+        if self._is_binary(full_path):
+            return {}
+
         try:
             result = subprocess.run(
                 ["git", "blame", "--line-porcelain", file_path],
@@ -41,7 +45,7 @@ class BlameAnalyzer:
                 text=True,
                 timeout=30,
             )
-        except (subprocess.TimeoutExpired, OSError):
+        except (subprocess.TimeoutExpired, OSError, UnicodeDecodeError):
             return {}
 
         if result.returncode != 0:
@@ -55,3 +59,12 @@ class BlameAnalyzer:
                     counts[author] += 1
 
         return dict(counts)
+
+    @staticmethod
+    def _is_binary(path: Path) -> bool:
+        """Check if a file is binary by reading its first 8KB."""
+        try:
+            chunk = path.read_bytes()[:8192]
+            return b"\x00" in chunk
+        except OSError:
+            return True

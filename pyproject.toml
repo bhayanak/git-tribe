@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "git-tribe"
-version = "1.0.0"
+version = "1.1.0"
 description = "Code ownership & knowledge map CLI — bus factor, knowledge silos, and CODEOWNERS generation from git history"
 readme = "README.md"
 license = "MIT"

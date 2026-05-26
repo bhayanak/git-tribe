@@ -31,13 +31,14 @@ def generate_codeowners(
             top_owners = owners[:1]
 
         if output_format == "gitlab":
-            # GitLab uses [path] section format
             owner_str = " ".join(f"@{_to_username(o.author)}" for o in top_owners)
-            lines.append(f"{dir_path} {owner_str}")
+            pattern = dir_path + "/" if dir_path else "*"
+            lines.append(f"{pattern} {owner_str}")
         else:
             # GitHub CODEOWNERS format
             owner_str = " ".join(f"@{_to_username(o.author)}" for o in top_owners)
-            lines.append(f"/{dir_path} {owner_str}")
+            pattern = f"/{dir_path}/" if dir_path else "*"
+            lines.append(f"{pattern} {owner_str}")
 
     content = "\n".join(lines) + "\n"
     output_path.write_text(content)
