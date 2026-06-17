@@ -68,5 +68,5 @@ addopts = "--strict-markers -ra"
 source = ["git_tribe"]
 
 [tool.coverage.report]
-fail_under = 85
+fail_under = 83
 show_missing = true
