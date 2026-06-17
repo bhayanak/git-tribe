@@ -93,13 +93,15 @@ def render_summary_json(
         owners = dir_ownership.get(dir_path, [])
         primary = owners[0] if owners else OwnershipEntry("unknown", 0)
         bf = dir_bus.get(dir_path, 0)
-        directories.append({
-            "path": dir_path,
-            "primary_owner": primary.author,
-            "share_pct": round(primary.percentage),
-            "bus_factor": bf,
-            "risk": "high" if bf <= config.thresholds.bus_factor_warning else "low",
-        })
+        directories.append(
+            {
+                "path": dir_path,
+                "primary_owner": primary.author,
+                "share_pct": round(primary.percentage),
+                "bus_factor": bf,
+                "risk": "high" if bf <= config.thresholds.bus_factor_warning else "low",
+            }
+        )
 
     silo_list = [
         {
@@ -128,8 +130,7 @@ def render_summary_json(
     single_author = [s for s in silos if s.num_contributors == 1]
     if single_author:
         recommendations.append(
-            f"{len(single_author)} file(s) are single-author"
-            " — assign cross-review in next sprint"
+            f"{len(single_author)} file(s) are single-author — assign cross-review in next sprint"
         )
 
     summary = {
