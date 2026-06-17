@@ -53,6 +53,9 @@ def scan(
         str, typer.Option("--format", "-f", help="Output format: terminal, json, markdown, csv")
     ] = "terminal",
     output: Annotated[Path | None, typer.Option("--output", "-o", help="Output file path")] = None,
+    summary: Annotated[
+        bool, typer.Option("--summary", "-s", help="Output concise directory-level JSON summary")
+    ] = False,
     config_path: Annotated[
         Path | None, typer.Option("--config", "-c", help="Config file path")
     ] = None,
@@ -96,7 +99,11 @@ def scan(
         "repo_path": str(repo_path),
     }
 
-    if output_format == "terminal":
+    if summary:
+        from git_tribe.output.json_output import render_summary_json
+
+        render_summary_json(report, config, output)
+    elif output_format == "terminal":
         render_report(report, config)
     elif output_format == "json":
         from git_tribe.output.json_output import render_json
